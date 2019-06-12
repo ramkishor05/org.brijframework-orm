@@ -1,7 +1,10 @@
 package org.brijframework.jpa.context;
 
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
+import org.brijframework.container.Container;
+import org.brijframework.context.Context;
 import org.brijframework.jpa.container.EntityDataContainer;
 import org.brijframework.jpa.container.EntityModelContainer;
 import org.brijframework.jpa.factories.EntityDataFactory;
@@ -9,10 +12,10 @@ import org.brijframework.jpa.factories.EntityModelFactory;
 import org.brijframework.jpa.factories.internal.AnnoEntityModelFactory;
 import org.brijframework.jpa.factories.internal.JsonEntityDataFactory;
 
-public class EntityContext {
+public class EntityContext implements Context{
   
 	private Properties properties=new Properties();
-	
+	private Context context;
 	public void start() {
 		EntityModelContainer entityModelContainer=EntityModelContainer.getContainer(); 
 		entityModelContainer.setContext(this);
@@ -54,6 +57,31 @@ public class EntityContext {
 	
 	public String getProperty(String key) {
 		return properties.getProperty(key);
+	}
+
+	@Override
+	public void initialize(Context context) {
+		this.context=context;
+	}
+
+	@Override
+	public void startup() {
+		
+	}
+
+	@Override
+	public void destory() {
+		
+	}
+
+	@Override
+	public Context getParent() {
+		return this.context;
+	}
+
+	@Override
+	public ConcurrentHashMap<Object, Container> getContainers() {
+		return null;
 	}
 	
 }
