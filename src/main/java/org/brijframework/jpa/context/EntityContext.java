@@ -4,7 +4,7 @@ import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
-import org.brijframework.context.ContainerContext;
+import org.brijframework.context.ModuleContext;
 import org.brijframework.context.Context;
 import org.brijframework.jpa.container.EntityDataContainer;
 import org.brijframework.jpa.container.EntityModelContainer;
@@ -13,7 +13,7 @@ import org.brijframework.jpa.factories.EntityModelFactory;
 import org.brijframework.jpa.factories.internal.AnnoEntityModelFactory;
 import org.brijframework.jpa.factories.internal.JsonEntityDataFactory;
 
-public class EntityContext implements ContainerContext{
+public class EntityContext implements ModuleContext{
   
 	private Properties properties;
 	
