@@ -1,11 +1,10 @@
 package org.brijframework.jpa.context;
 
-import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.brijframework.asm.context.AbstractContext;
 import org.brijframework.container.Container;
 import org.brijframework.context.ModuleContext;
-import org.brijframework.context.Context;
 import org.brijframework.jpa.container.EntityDataContainer;
 import org.brijframework.jpa.container.EntityModelContainer;
 import org.brijframework.jpa.factories.EntityDataFactory;
@@ -13,12 +12,8 @@ import org.brijframework.jpa.factories.EntityModelFactory;
 import org.brijframework.jpa.factories.internal.AnnoEntityModelFactory;
 import org.brijframework.jpa.factories.internal.JsonEntityDataFactory;
 
-public class EntityContext implements ModuleContext{
-  
-	private Properties properties;
-	
-	private Context context;
-	
+public class EntityContext extends AbstractContext implements ModuleContext{
+
 	public void start() {
 		EntityModelContainer entityModelContainer=EntityModelContainer.getContainer(); 
 		entityModelContainer.setContext(this);
@@ -54,19 +49,6 @@ public class EntityContext implements ModuleContext{
 		jsonEntityDataFactory.getCache().clear();
 	}
 	
-	public void setProperty(String key, String value) {
-		properties.setProperty(key, value);
-	}
-	
-	public String getProperty(String key) {
-		return properties.getProperty(key);
-	}
-
-	@Override
-	public void initialize(Context context) {
-		this.context=context;
-	}
-
 	@Override
 	public void startup() {
 		
@@ -78,21 +60,9 @@ public class EntityContext implements ModuleContext{
 	}
 
 	@Override
-	public Context getParent() {
-		return this.context;
-	}
-
-	@Override
 	public ConcurrentHashMap<Object, Container> getContainers() {
 		return null;
 	}
 
-	@Override
-	public Properties getProperties() {
-		if(this.properties==null) {
-			this.properties=new Properties();
-		}
-		return this.properties;
-	}
 	
 }

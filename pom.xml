@@ -47,6 +47,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.brijframework</groupId>
+			<artifactId>org.brijframework-asm</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.brijframework</groupId>
