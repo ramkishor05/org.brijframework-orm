@@ -50,7 +50,7 @@ public class EntityContext extends AbstractContext implements ModuleContext{
 	}
 	
 	@Override
-	public void startup() {
+	public void start() {
 		
 	}
 
