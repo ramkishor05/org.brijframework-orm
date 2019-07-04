@@ -13,7 +13,8 @@ import org.brijframework.jpa.factories.internal.AnnoEntityModelFactory;
 import org.brijframework.jpa.factories.internal.JsonEntityDataFactory;
 
 public class EntityContext extends AbstractContext implements ModuleContext{
-
+	
+	@Override
 	public void start() {
 		EntityModelContainer entityModelContainer=EntityModelContainer.getContainer(); 
 		entityModelContainer.setContext(this);
@@ -39,7 +40,8 @@ public class EntityContext extends AbstractContext implements ModuleContext{
 		entityDataContainer.build();
 		entityDataContainer.procced();
 	}
-	
+
+	@Override
 	public void stop() {
 		EntityDataContainer entityDataContainer=EntityDataContainer.getContainer();
 		entityDataContainer.getCache().clear();
@@ -47,16 +49,6 @@ public class EntityContext extends AbstractContext implements ModuleContext{
 		entityDataFactory.getCache().clear();
 		EntityDataFactory jsonEntityDataFactory=JsonEntityDataFactory.getFactory();
 		jsonEntityDataFactory.getCache().clear();
-	}
-	
-	@Override
-	public void start() {
-		
-	}
-
-	@Override
-	public void destory() {
-		
 	}
 
 	@Override
